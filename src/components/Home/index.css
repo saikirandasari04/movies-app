@@ -1,0 +1,14 @@
+.homeBgContainer {
+  position: relative;
+  width: 100vw;
+  height: 1356px;
+
+  background: #131313;
+}
+.supermanContainer {
+  position: absolute;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://res.cloudinary.com/de45if6nj/image/upload/v1678443446/Image_wz7bfq.jpg');
+}

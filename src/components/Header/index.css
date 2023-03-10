@@ -1,0 +1,24 @@
+.headerNavContainer {
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: #131313;
+  height: 103px;
+}
+.headerContainer1 {
+  display: flex;
+}
+.headerHomeAndPopular {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  margin: 10px;
+}
+.headerList {
+  display: flex;
+  align-self: center;
+  list-style-type: none;
+}
