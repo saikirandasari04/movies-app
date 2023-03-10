@@ -7,8 +7,9 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBgContainer">
+        <Header />
         <div className="supermanContainer">
-          <Header />
+          <h1>hai</h1>
         </div>
       </div>
     )
