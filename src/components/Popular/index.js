@@ -38,7 +38,6 @@ class Popular extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      console.log(data)
       const updatedData = data.results.map(each => ({
         posterPath: each.poster_path,
         backdropPath: each.backdrop_path,
@@ -46,7 +45,6 @@ class Popular extends Component {
         overview: each.overview,
         title: each.title,
       }))
-      console.log(updatedData)
       this.setState({
         popularMovies: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -74,15 +72,15 @@ class Popular extends Component {
       <>
         <ul className="popular-ul-container">
           {popularMovies.map(each => (
-            <Link to={`/movies/${each.id}`} key={each.id}>
-              <li className="popular-li-item">
+            <li className="popular-li-item" key={each.id}>
+              <Link to={`/movies/${each.id}`}>
                 <img
                   className="popular-poster"
                   src={each.posterPath}
                   alt={each.title}
                 />
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
         </ul>
       </>

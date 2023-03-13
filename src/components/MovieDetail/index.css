@@ -83,7 +83,6 @@
   color: #64748b;
 }
 
-/* Movie Detail Styling */
 .movie-info-title {
   font-style: normal;
   font-weight: 600;
@@ -137,11 +136,11 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-@media screen and (max-width: 576px) {
-  .movie-background-info-image-sm-devices {
-    margin: 20px;
-    width: 700px;
-    border: 1px solid red;
-  }
+.lg-devices {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.home-poster-overview {
+  width: 600px;
 }

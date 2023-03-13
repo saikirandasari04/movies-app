@@ -16,12 +16,13 @@ const apiStatusConstants = {
 
 class SearchFilter extends Component {
   state = {
+    searchInput: '',
     searchMovies: [],
     apiStatus: apiStatusConstants.initial,
   }
 
-  getSearchMovies = async searchInput => {
-    // console.log(searchInput)
+  getSearchMovies = async () => {
+    const {searchInput} = this.state
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${searchInput}`
     const options = {
@@ -33,14 +34,12 @@ class SearchFilter extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      // console.log(data)
       const updatedData = data.results.map(each => ({
         posterPath: each.poster_path,
         title: each.title,
         id: each.id,
         backdropPath: each.backdrop_path,
       }))
-      // console.log(updatedData)
       this.setState({
         searchMovies: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -53,7 +52,10 @@ class SearchFilter extends Component {
   }
 
   searchInput = text => {
-    this.getSearchMovies(text)
+    this.setState(
+      {apiStatus: apiStatusConstants.inProgress, searchInput: text},
+      this.getSearchMovies,
+    )
   }
 
   onRetry = () => {
@@ -63,7 +65,7 @@ class SearchFilter extends Component {
   renderFailureView = () => <FailureView onRetry={this.onRetry} />
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" height={35} width={380} color=" #D81F26" />
     </div>
   )
@@ -90,12 +92,15 @@ class SearchFilter extends Component {
       <>
         {searchMovies.length > 0 ? (
           <>
-            {/* <p>{JSON.stringify(searchMovies)}</p> */}
             <div className="search-filter-bg-container">
               <div className="search-filter-movies-list-container">
                 <ul className="search-filter-ul-container">
                   {searchMovies.map(each => (
-                    <Link to={`/movies/${each.id}`} key={each.id}>
+                    <Link
+                      to={`/movies/${each.id}`}
+                      key={each.id}
+                      target="blank"
+                    >
                       <li className="search-filter-li-item" key={each.id}>
                         <img
                           className="search-poster"

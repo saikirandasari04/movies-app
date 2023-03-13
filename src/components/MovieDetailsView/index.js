@@ -4,10 +4,8 @@ import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
 import Footer from '../Footer'
 import FailureView from '../FailureView'
-// import PlayVideoView from '../PlayVideoView'
 
 import Header from '../Header'
-// import Footer from '../Footer'
 
 import './index.css'
 import MovieDetail from '../MovieDetail'
@@ -21,7 +19,7 @@ const apiStatusConstants = {
 
 class MovieDetailView extends Component {
   state = {
-    apiStatus: apiStatusConstants.initial,
+    apiStatus: apiStatusConstants.inProgress,
     movieDetails: [],
     genres: [],
     spokenLanguages: [],
@@ -33,7 +31,6 @@ class MovieDetailView extends Component {
   }
 
   getMovieDetails = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -48,25 +45,25 @@ class MovieDetailView extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      const updatedData = [data.movie_details].map(each => ({
-        id: each.id,
-        backdropPath: each.backdrop_path,
-        budget: each.budget,
-        title: each.title,
-        overview: each.overview,
-        originalLanguage: each.original_language,
-        releaseDate: each.release_date,
-        count: each.vote_count,
-        rating: each.vote_average,
-        runtime: each.runtime,
-        posterPath: each.poster_path,
-      }))
-      // console.log(updatedData)
+      console.log(data)
+      const updatedData = {
+        id: data.movie_details.id,
+        backdropPath: data.movie_details.backdrop_path,
+        budget: data.movie_details.budget,
+        title: data.movie_details.title,
+        overview: data.movie_details.overview,
+        originalLanguage: data.movie_details.original_language,
+        releaseDate: data.movie_details.release_date,
+        count: data.movie_details.vote_count,
+        rating: data.movie_details.vote_average,
+        runtime: data.movie_details.runtime,
+        posterPath: data.movie_details.poster_path,
+        adult: data.movie_details.adult,
+      }
       const genresData = data.movie_details.genres.map(each => ({
         id: each.id,
         name: each.name,
       }))
-      // console.log(genresData)
       const updatedSimilarData = data.movie_details.similar_movies.map(
         each => ({
           id: each.id,
@@ -74,7 +71,6 @@ class MovieDetailView extends Component {
           title: each.title,
         }),
       )
-      // console.log(updatedSimilarData)
       const updatedLanguagesData = data.movie_details.spoken_languages.map(
         each => ({
           id: each.id,
@@ -113,98 +109,62 @@ class MovieDetailView extends Component {
 
   renderSuccessView = () => {
     const {movieDetails, genres, spokenLanguages, similarMovies} = this.state
-    const newMovieDetails = {...movieDetails[0]}
-    const {releaseDate, count, rating, budget} = newMovieDetails
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
-    const d = new Date(releaseDate)
-    const monthName = months[d.getMonth()]
-    const date = new Date(releaseDate)
-    const year = date.getFullYear()
-    const day = date.getDay().toString()
-    let dateEndingWord
-    if (day.endsWith('1')) {
-      dateEndingWord = 'st'
-    } else if (day.endsWith('2')) {
-      dateEndingWord = 'nd'
-    } else if (day.endsWith('3')) {
-      dateEndingWord = 'rd'
-    } else {
-      dateEndingWord = 'th'
-    }
+    const {releaseDate, count, rating, budget} = movieDetails
+
     return (
       <ul>
         <li className="">
           <div className="">
-            {movieDetails.map(each => (
-              <MovieDetail movieDetails={each} key={each.id} />
-            ))}
+            <MovieDetail movieDetails={movieDetails} key={movieDetails.id} />
           </div>
         </li>
         <li className="additional-movie-info-container additional-info-sm-container">
-          <ul className="each-genre-ul-container">
+          <div className="each-genre-ul-container">
             <h1 className="movie-info-genre-heading">Genres</h1>
-            {genres.map(eachGenre => (
-              <li className="movie-info-each-genre" key={eachGenre.id}>
-                {eachGenre.name}
-              </li>
-            ))}
-          </ul>
-          <ul className="each-genre-ul-container">
+            <ul>
+              {genres.map(eachGenre => (
+                <li className="movie-info-each-genre" key={eachGenre.id}>
+                  <p>{eachGenre.name}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="each-genre-ul-container">
             <h1 className="movie-info-genre-heading">Audio Available</h1>
-            {spokenLanguages.map(eachAudio => (
-              <li className="movie-info-each-genre" key={eachAudio.id}>
-                {eachAudio.language}
-              </li>
-            ))}
-          </ul>
+            <ul>
+              {spokenLanguages.map(eachAudio => (
+                <li className="movie-info-each-genre" key={eachAudio.id}>
+                  <p>{eachAudio.language}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="each-genre-ul-container">
             <h1 className="movie-info-rating-count-heading">Rating Count</h1>
             <p className="movie-info-rating-count">{count}</p>
-            {/* <p>{JSON.stringify(movieDetails)}</p> */}
-            {/* <p>{JSON.stringify(newMovieDetails)}</p> */}
             <h1 className="movie-info-rating-avg-heading">Rating Average</h1>
             <p className="movie-info-rating">{rating}</p>
           </div>
           <div className="each-genre-ul-container">
             <h1 className="movie-info-budget-heading">Budget</h1>
             <p className="movie-info-budget">{budget}</p>
-            {/* <p>{JSON.stringify(movieDetails)}</p> */}
-            {/* <p>{JSON.stringify(newMovieDetails)}</p> */}
-            <h1 className="movie-info-release-date">Release Date </h1>
-            <p>
-              <span className="movie-info-date">{day}</span>
-              <span className="movie-info-date-end">{dateEndingWord}</span>
-              <span className="movie-info-month-name">{monthName}</span>
-              <span className=" movie-info-year">{year}</span>
-            </p>
+            <h1 className="movie-info-release-date">Release Date</h1>
+            <p>{releaseDate}</p>
           </div>
         </li>
         <li className="similar-movies-container">
           <h1 className="more-like-this">More like this</h1>
           <ul className="popular-ul-container similar-ul-container">
             {similarMovies.map(each => (
-              <Link to={`/movies/${each.id}`} key={each.id} target="blank">
-                <li className="popular-li-item" key={each.id}>
+              <li className="popular-li-item" key={each.id}>
+                <Link to={`/movies/${each.id}`} target="blank">
                   <img
                     className="popular-poster"
                     src={each.posterPath}
                     alt={each.title}
                   />
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
           </ul>
         </li>
@@ -229,17 +189,15 @@ class MovieDetailView extends Component {
 
   render() {
     return (
-      <div className="dummy">
+      <div className="root-container">
         <Header />
-        <div className="root-container">
-          <div
-            className="video-details-view-container"
-            data-testid="videoItemDetails"
-          >
-            {this.renderVideoDetailView()}
-          </div>
-          <Footer />
+        <div
+          className="video-details-view-container"
+          data-testid="videoItemDetails"
+        >
+          {this.renderVideoDetailView()}
         </div>
+        <Footer />
       </div>
     )
   }

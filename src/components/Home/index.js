@@ -2,8 +2,6 @@ import {Component} from 'react'
 
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-// import {Link} from 'react-router-dom'
-// import {AiOutlineClose} from 'react-icons/ai'
 import HomePoster from '../HomePoster'
 import Header from '../Header'
 import './index.css'
@@ -45,7 +43,6 @@ class Home extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
-      // console.log(data)
       const fetchedDataLength = data.results.length
       const randomPoster =
         data.results[Math.floor(Math.random() * fetchedDataLength)]
@@ -56,7 +53,6 @@ class Home extends Component {
         overview: randomPoster.overview,
         posterPath: randomPoster.poster_path,
       }
-      // console.log(updatedData)
       this.setState({
         initialPoster: {...updatedData},
         apiStatus: apiStatusConstants.success,
@@ -90,7 +86,6 @@ class Home extends Component {
     const {initialPoster} = this.state
     return (
       <>
-        {/* <p className="json">{JSON.stringify(homeVideos)}</p> */}
         <HomePoster poster={initialPoster} />
       </>
     )

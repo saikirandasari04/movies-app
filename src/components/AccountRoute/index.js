@@ -3,7 +3,7 @@ import Footer from '../Footer'
 import Header from '../Header'
 import './index.css'
 
-const Account = props => {
+const AccountRoute = props => {
   const username = localStorage.getItem('username')
   const password = localStorage.getItem('password')
   const passwordInAsterisk = '*'.repeat(password.length)
@@ -50,4 +50,4 @@ const Account = props => {
   )
 }
 
-export default Account
+export default AccountRoute
