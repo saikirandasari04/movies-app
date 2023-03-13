@@ -1,102 +1,116 @@
-.loginBgContainer {
-  width: 1440px;
-  height: 1024px;
-  left: 0px;
-  top: 0px;
-  background: linear-gradient(
-      116.64deg,
-      rgba(0, 0, 0, 0.8) 0.46%,
-      rgba(0, 0, 0, 0) 100%
-    ),
-    url('https://res.cloudinary.com/de45if6nj/image/upload/v1678422019/netfilx_1_crbt4u.jpg');
-}
-.movieName {
-  position: absolute;
-  width: 180px;
-  height: 52px;
-  left: 165px;
-  top: 48px;
-}
-.loginCardContainer {
-  position: absolute;
-  width: 456px;
-  height: 440px;
-  left: 492px;
-  top: 292px;
-  background: #0c0b10;
-  opacity: 0.8;
-  border-radius: 8px;
+.login-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  height: 100vh;
+  /* width: 90%; */
+  /* max-width: 1110px; */
+  background-color: #131313;
+  margin: auto;
+  /* border: 1px solid red; */
 }
-.loginHeading {
-  width: 78px;
-  height: 40px;
-  left: 681px;
-  top: 356px;
-  font-family: 'HK Grotesk';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
+
+@media screen and (min-width: 728px) {
+  .login-form-container {
+    /* flex-direction: row;
+    justify-content: space-around; */
+    background-image: url('https://res.cloudinary.com/dyx9u0bif/image/upload/v1657426893/bg-image_usfch9.png');
+    background-size: cover;
+  }
+}
+.form-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
-  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 350px;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* border: 1px solid orangered; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  @media screen and (min-width: 992px) {
+    width: 350px;
+    flex-shrink: 0;
+    box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+    padding: 64px 48px 64px 48px;
+  }
 }
-.fieldContainer {
-  align-self: flex-start;
-  margin-bottom: 20px;
-  margin-left: 10px;
+.login-website-logo {
+  width: 185px;
 }
-.loginLabel {
-  width: 65px;
-  height: 16px;
-  left: 0px;
-  top: 0px;
-  font-family: 'HK Grotesk';
+.input-label {
+  margin-bottom: 0px;
+  font-family: 'Roboto';
+  font-weight: bold;
+
+  color: #475569;
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
   color: #ffffff;
-  padding-bottom: 10px;
 }
-.loginInput {
-  height: 25px;
-  width: 390px;
-  left: 0%;
-  right: 0%;
-  top: 24px;
-  background: #333333;
-  border-radius: 2px;
+.input-container {
   display: flex;
-  color: #fff;
-  align-self: stretch;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 100%;
+  /* border: 1px solid greenyellow; */
 }
-.loginButton {
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  background: #e50914;
-  border-radius: 8px;
-  font-family: 'HK Grotesk';
-  font-style: normal;
-  font-weight: 700;
+.input-field {
   font-size: 14px;
-  line-height: 24px;
-  align-self: stretch;
-  text-align: center;
-  color: #f8fafc;
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 40px;
+  border: 1px solid #333333;
+  background-color: #333333;
+  color: #64748b;
+  border-radius: 2px;
+  margin-top: 5px;
+  padding: 8px 16px 8px 16px;
+  outline: none;
 }
-.error {
-  color: #e50914;
+.login-btn {
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  height: 40px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  background-color: #e50914;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.login-err-msg {
+  align-self: start;
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 0px;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 16px;
+  color: #dc2626;
+}
+.show-hide-container {
+  display: flex;
+  margin-top: 6px;
+}
+.login-text {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  align-self: flex-start;
+}
+.login-website-logo {
+  width: 105px;
+  align-self: flex-start;
+  margin-top: -100px;
+  margin-bottom: 200px;
+  margin-left: 30px;
 }

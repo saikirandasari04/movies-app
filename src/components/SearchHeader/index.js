@@ -10,13 +10,13 @@ import './index.css'
 class Header extends Component {
   state = {
     showMenu: false,
-    showSearchBar: false,
+    searchValue: '',
   }
 
   onClickSearchIcon = () => {
-    this.setState(prevState => ({
-      showSearchBar: !prevState.showSearchBar,
-    }))
+    const {searchInput} = this.props
+    const {searchValue} = this.state
+    searchInput(searchValue)
   }
 
   onClickShowMenu = () => {
@@ -28,14 +28,11 @@ class Header extends Component {
   }
 
   onChangeSearchInput = event => {
-    const {searchInput} = this.props
-    if (event.key === 'Enter') {
-      searchInput(event.target.value)
-    }
+    this.setState({searchValue: event.target.value})
   }
 
   render() {
-    const {showMenu, showSearchBar} = this.state
+    const {showMenu} = this.state
     const {match} = this.props
     const {path} = match
     let homeClassNameStyling
@@ -81,27 +78,22 @@ class Header extends Component {
             </Link>
           </ul>
           <div className="search-container">
-            {showSearchBar && (
-              <input
-                type="search"
-                onKeyDown={this.onChangeSearchInput}
-                placeholder="search"
-                className="search"
-              />
-            )}
-            <Link to="/search">
-              <button
-                type="button"
-                className="icon-button"
-                testid="searchButton"
-              >
-                <HiOutlineSearch
-                  size={20}
-                  color="white"
-                  onClick={this.onClickSearchIcon}
-                />
-              </button>
-            </Link>
+            <input
+              type="search"
+              onKeyDown={this.onChangeSearchInput}
+              placeholder="search"
+              className="search"
+            />
+
+            <button
+              type="button"
+              onClick={this.onClickSearchIcon}
+              className="icon-button"
+              testid="searchButton"
+            >
+              <HiOutlineSearch size={20} color="white" />
+            </button>
+
             <Link to="/account">
               <img
                 src="https://res.cloudinary.com/dyx9u0bif/image/upload/v1657426927/account-avatar_irmhck.png"
@@ -136,12 +128,7 @@ class Header extends Component {
                   Account
                 </li>
               </Link>
-              <ImCross
-                size={10}
-                color="#ffffff"
-                onClick={this.onClickHideMenu}
-                className="icon"
-              />
+              <ImCross size={10} color="#ffffff" className="icon" />
             </ul>
           </div>
         )}
