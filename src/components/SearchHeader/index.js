@@ -7,7 +7,7 @@ import {ImCross} from 'react-icons/im'
 
 import './index.css'
 
-class Header extends Component {
+class SearchHeader extends Component {
   state = {
     showMenu: false,
     searchValue: '',
@@ -80,7 +80,7 @@ class Header extends Component {
           <div className="search-container">
             <input
               type="search"
-              onKeyDown={this.onChangeSearchInput}
+              onChange={this.onChangeSearchInput}
               placeholder="search"
               className="search"
             />
@@ -137,4 +137,4 @@ class Header extends Component {
   }
 }
 
-export default withRouter(Header)
+export default withRouter(SearchHeader)

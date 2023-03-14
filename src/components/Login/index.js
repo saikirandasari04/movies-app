@@ -79,12 +79,6 @@ class Login extends Component {
     )
   }
 
-  //   onShowHidePassword = () => {
-  //     this.setState(prevState => ({
-  //       isPasswordChecked: !prevState.isPasswordChecked,
-  //     }))
-  //   }
-
   renderPassword = () => {
     const {password, isPasswordChecked} = this.state
     return (
@@ -100,17 +94,6 @@ class Login extends Component {
           id="password"
           placeholder="Password"
         />
-        {/* <div className="show-hide-container">
-          <input
-            type="checkbox"
-            id="show-password"
-            checked={isPasswordChecked}
-            onChange={this.onShowHidePassword}
-          />
-          <label className="input-label" htmlFor="show-password">
-            Show Password
-          </label>
-        </div> */}
       </>
     )
   }
@@ -129,11 +112,6 @@ class Login extends Component {
           alt="login website logo"
         />
         <form className="form-container" onSubmit={this.submitForm}>
-          {/* <img
-            className="login-website-logo"
-            src="https://res.cloudinary.com/dyx9u0bif/image/upload/v1656594712/Group_7399_wrvd0n.png"
-            alt="website logo"
-          /> */}
           <h1 className="login-text">Login</h1>
           <div className="input-container">{this.renderUsername()}</div>
           <div className="input-container">{this.renderPassword()}</div>

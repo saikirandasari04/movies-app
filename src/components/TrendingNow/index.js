@@ -68,9 +68,6 @@ class TrendingNow extends Component {
     const {trendingNow} = this.state
     return (
       <>
-        {/* <p className="json">{JSON.stringify(trendingNow)}</p> */}
-        {/* <HomeVideos homeVideos={homeVideos} /> */}
-
         <SlickMovieCard movies={trendingNow} />
       </>
     )

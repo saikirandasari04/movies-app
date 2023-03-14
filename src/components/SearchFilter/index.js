@@ -79,9 +79,9 @@ class SearchFilter extends Component {
           alt="no movies"
           className="search-not-found-image"
         />
-        <h1 className="search-not-found-heading">
+        <p className="search-not-found-heading">
           Your search for {searchInput} did not find any matches.
-        </h1>
+        </p>
       </div>
     )
   }
@@ -96,19 +96,15 @@ class SearchFilter extends Component {
               <div className="search-filter-movies-list-container">
                 <ul className="search-filter-ul-container">
                   {searchMovies.map(each => (
-                    <Link
-                      to={`/movies/${each.id}`}
-                      key={each.id}
-                      target="blank"
-                    >
-                      <li className="search-filter-li-item" key={each.id}>
+                    <li className="search-filter-li-item" key={each.id}>
+                      <Link to={`/movies/${each.id}`} target="blank">
                         <img
                           className="search-poster"
                           src={each.posterPath}
                           alt={each.title}
                         />
-                      </li>
-                    </Link>
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               </div>

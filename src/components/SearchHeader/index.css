@@ -7,7 +7,6 @@
   padding: 20px;
   height: 60px;
   width: 100%;
-  /* position: fixed; */
 }
 .header-logo {
   width: 80px;
@@ -31,7 +30,6 @@
   width: 30px;
   height: 30px;
   margin-right: 10px;
-  /* display: none; */
   visibility: hidden;
   text-align: center;
 }
@@ -188,7 +186,6 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 26px;
-  /* identical to box height, or 162% */
 
   letter-spacing: -0.355556px;
   margin-left: 35px;

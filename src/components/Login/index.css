@@ -4,16 +4,11 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* width: 90%; */
-  /* max-width: 1110px; */
   background-color: #131313;
-  margin: auto;
-  /* border: 1px solid red; */
-}
+  margin: auto}
 
 @media screen and (min-width: 728px) {
   .login-form-container {
-    /* flex-direction: row;
     justify-content: space-around; */
     background-image: url('https://res.cloudinary.com/dyx9u0bif/image/upload/v1657426893/bg-image_usfch9.png');
     background-size: cover;
@@ -28,7 +23,6 @@
   width: 100%;
   max-width: 350px;
   background-color: rgba(0, 0, 0, 0.7);
-  /* border: 1px solid orangered; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   @media screen and (min-width: 992px) {
     width: 350px;
@@ -58,7 +52,6 @@
   flex-direction: column;
   margin-top: 20px;
   width: 100%;
-  /* border: 1px solid greenyellow; */
 }
 .input-field {
   font-size: 14px;

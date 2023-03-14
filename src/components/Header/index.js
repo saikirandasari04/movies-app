@@ -10,13 +10,6 @@ import './index.css'
 class Header extends Component {
   state = {
     showMenu: false,
-    showSearchBar: false,
-  }
-
-  onClickSearchIcon = () => {
-    this.setState(prevState => ({
-      showSearchBar: !prevState.showSearchBar,
-    }))
   }
 
   onClickShowMenu = () => {
@@ -27,15 +20,8 @@ class Header extends Component {
     this.setState({showMenu: false})
   }
 
-  onChangeSearchInput = event => {
-    const {searchInput} = this.props
-    if (event.key === 'Enter') {
-      searchInput(event.target.value)
-    }
-  }
-
   render() {
-    const {showMenu, showSearchBar} = this.state
+    const {showMenu} = this.state
     const {match} = this.props
     const {path} = match
     let homeClassNameStyling
@@ -71,35 +57,26 @@ class Header extends Component {
             />
           </Link>
           <ul className="nav-list-items">
-            <Link to="/" className="nav-link">
-              <li className={`popup-heading ${homeClassNameStyling}`}>Home</li>
-            </Link>
-            <Link to="/popular" className="nav-link">
-              <li className={`popup-heading ${popularClassNameStyling}`}>
+            <li className={`popup-heading ${homeClassNameStyling}`}>
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </li>
+
+            <li className={`popup-heading ${popularClassNameStyling}`}>
+              <Link to="/popular" className="nav-link">
                 Popular
-              </li>
-            </Link>
+              </Link>
+            </li>
           </ul>
           <div className="search-container">
-            {showSearchBar && (
-              <input
-                type="search"
-                onKeyDown={this.onChangeSearchInput}
-                placeholder="search"
-                className="search"
-              />
-            )}
             <Link to="/search">
               <button
                 type="button"
                 className="icon-button"
                 testid="searchButton"
               >
-                <HiOutlineSearch
-                  size={20}
-                  color="white"
-                  onClick={this.onClickSearchIcon}
-                />
+                <HiOutlineSearch size={20} color="white" />
               </button>
             </Link>
             <Link to="/account">
@@ -120,22 +97,24 @@ class Header extends Component {
         {showMenu && (
           <div>
             <ul className="list-mini">
-              <Link to="/" className="nav-link">
-                <li className={`popup-heading ${homeClassNameStyling}`}>
+              <li className={`popup-heading ${homeClassNameStyling}`}>
+                <Link to="/" className="nav-link">
                   Home
-                </li>
-              </Link>
-              <Link to="/popular" className="nav-link">
-                <li className={`popup-heading ${popularClassNameStyling}`}>
-                  Popular
-                </li>
-              </Link>
+                </Link>
+              </li>
 
-              <Link to="/account" className="nav-link">
-                <li className={`popup-heading ${accountClassNameStyling}`}>
+              <li className={`popup-heading ${popularClassNameStyling}`}>
+                <Link to="/popular" className="nav-link">
+                  Popular
+                </Link>
+              </li>
+
+              <li className={`popup-heading ${accountClassNameStyling}`}>
+                <Link to="/account" className="nav-link">
                   Account
-                </li>
-              </Link>
+                </Link>
+              </li>
+
               <ImCross
                 size={10}
                 color="#ffffff"

@@ -9,7 +9,6 @@ import Header from '../Header'
 import Footer from '../Footer'
 
 const apiStatusConstants = {
-  initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',

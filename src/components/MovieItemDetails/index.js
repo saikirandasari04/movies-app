@@ -17,7 +17,7 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class MovieDetailView extends Component {
+class MovieItemDetails extends Component {
   state = {
     apiStatus: apiStatusConstants.inProgress,
     movieDetails: [],
@@ -202,4 +202,4 @@ class MovieDetailView extends Component {
     )
   }
 }
-export default MovieDetailView
+export default MovieItemDetails

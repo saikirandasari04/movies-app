@@ -11,7 +11,6 @@ import Originals from '../Originals'
 import Footer from '../Footer'
 
 const apiStatusConstants = {
-  initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
@@ -20,7 +19,7 @@ const apiStatusConstants = {
 class Home extends Component {
   state = {
     initialPoster: {},
-    apiStatus: apiStatusConstants.initial,
+    apiStatus: apiStatusConstants.inProgress,
   }
 
   componentDidMount() {
@@ -28,9 +27,6 @@ class Home extends Component {
   }
 
   getHomePagePoster = async () => {
-    this.setState({
-      apiStatus: apiStatusConstants.inProgress,
-    })
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = `https://apis.ccbp.in/movies-app/originals`
     const options = {
@@ -39,7 +35,6 @@ class Home extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
       const data = await response.json()
@@ -54,7 +49,7 @@ class Home extends Component {
         posterPath: randomPoster.poster_path,
       }
       this.setState({
-        initialPoster: {...updatedData},
+        initialPoster: updatedData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -71,14 +66,8 @@ class Home extends Component {
   renderFailureView = () => <FailureView onRetry={this.onRetry} />
 
   renderLoadingView = () => (
-    <div className="loader-container">
-      <Loader
-        testid="loader"
-        type="TailSpin"
-        height={35}
-        width={380}
-        color=" #D81F26"
-      />
+    <div className="loader-container" testid="loader">
+      <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
 
